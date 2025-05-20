@@ -31,7 +31,7 @@ Additional Features:
 
 UML Diagrams and descriptions of key algorithms, classes, and how things fit together.
 
-
+![class diagram](UMLdiagram.png)
     
 # Intended pacing:
 
