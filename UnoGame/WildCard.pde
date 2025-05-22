@@ -1,0 +1,2 @@
+class WildCard extends Card{
+}

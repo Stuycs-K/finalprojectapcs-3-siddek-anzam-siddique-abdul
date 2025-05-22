@@ -1,0 +1,2 @@
+class DrawCard extends Card{
+}

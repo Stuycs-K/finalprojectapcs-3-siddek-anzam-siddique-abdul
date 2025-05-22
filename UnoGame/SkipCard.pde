@@ -1,0 +1,2 @@
+class ReverseCard extends Card{
+}
