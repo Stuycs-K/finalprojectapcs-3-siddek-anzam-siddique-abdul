@@ -37,5 +37,25 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 
 How you are breaking down the project and who is responsible for which parts.
 
-A timeline with expected completion dates of parts of the project. (CHANGE THIS!!!!!)
+Phase 1: Planning/Designing (completed) (by 5/23)
+- Plan how the game will work
+- Finalize game rules
+- Create UML diagram of classes
 
+Phase 2: Coding the backend of the game (by 5/27)
+- Code the UnoGame, Card, Deck, Player classes
+- Ensure that regular game functions work (shuffle deck, draw cards, loop turns)
+- Test the game with only number cards
+
+Phase 3: Implementing Special Cards (by 5/28)
+- Create subclasses of Card: DrawCard, SkipCard, WildCard, ReverseCard
+- Ensure that the functions of each of these cards work (skipping turns, reverse the order of turns, etc.)
+
+Phase 4: Developing User Interface (by 5/31)
+- Display how many cards each player has left
+- Display whose turn it currently is
+- Display the last card placed
+
+Phase 5: Extensive Testing (by 6/2)
+- Ensure that the game has little to no flaws/errors
+- Test different possibilities and edge cases
