@@ -1,3 +1,13 @@
+class UnoGame;
+Deck deck;
+ArrayList<Player> players;
+int currentplayer;
+
+UnoGame(){
+  deck = new Deck(); 
+}
+
+
 void setup() {
   size(400, 400); 
   background(255); 
