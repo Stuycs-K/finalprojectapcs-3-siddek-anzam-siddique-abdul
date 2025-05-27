@@ -1,2 +1,2 @@
-class ReverseCard extends Card{
+class SkipCard extends Card{
 }

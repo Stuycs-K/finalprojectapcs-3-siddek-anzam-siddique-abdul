@@ -1,2 +1,2 @@
-class DrawCard extends Card{
+class ReverseCard extends Card{
 }
