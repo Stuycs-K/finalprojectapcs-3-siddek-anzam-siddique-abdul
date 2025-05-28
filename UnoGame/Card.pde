@@ -1,9 +1,14 @@
 class Card{
-String color; 
-String number;
+String colors; 
+String value;
 
-
-boolean playable(Card topcard){
-  
+ 
+Card(String colors, String value){
+  this.colors = colors;
+  this.value = value;
+}
+ 
+boolean playable(Card topCard){
+  return this.colors.equals(topCard.colors) || this.value.equals(topCard.value);
 }
 }
