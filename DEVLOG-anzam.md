@@ -9,3 +9,5 @@ This document must be updated daily every time you finish a work session.
 ### 2025-05-20 - Completed and added UML class diagram
 
 ### 2025-05-22 - Completed last section, the intended pacing, of the prototype
+
+### 2025-05-27 - Coded the Deck class and the Player class
