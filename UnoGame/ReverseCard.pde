@@ -1,5 +1,5 @@
 class ReverseCard extends Card{
-  public ReverseCard(String clr, int value) {
-    super(clr, value);
+  public ReverseCard(String clr) {
+    super(clr);
   }
 }

@@ -3,8 +3,13 @@ class DrawCard extends Card{
     super(clr, value);
   }
   
-  void effect(UnoGame game){
-    int next = (game.currentplayer +1) % game.players.size();
+  public void effect(Uno game){
+    int next = (game.currentplayer + game.direction) % game.players.size();
+    Player user = game.players.get(next);
+    
+    for (int x = 0; x < super.value; x++) {
+      user.drawCard(game.deck.drawCard());
+    }
   }
     
 }

@@ -7,6 +7,11 @@ class Card{
     this.value = value;
   }
   
+  public Card(String clr) {
+    this.clr = clr;
+    value = -1;
+  }
+  
   public String getColor() {
     return clr;
   }
@@ -20,5 +25,9 @@ class Card{
     int otherValue = topCard.getValue();
     
     return clr.equals(otherColor) || value == otherValue;
+  }
+  
+  public void effect() {
+    
   }
 }

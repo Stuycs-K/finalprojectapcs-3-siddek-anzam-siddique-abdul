@@ -1,5 +1,5 @@
 class SkipCard extends Card{
-  public SkipCard(String clr, int value) {
-    super(clr, value);
+  public SkipCard(String clr) {
+    super(clr);
   }
 }
