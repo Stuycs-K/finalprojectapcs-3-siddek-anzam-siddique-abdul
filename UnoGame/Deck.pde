@@ -10,7 +10,7 @@ class Deck{
     shuffle();
   }
   
-  private void intializeDeck() {
+  private void initializeDeck() {
     String[] colors = {"RED", "BLUE", "GREEN", "YELLOW"};
 
     for (String clr : colors) {

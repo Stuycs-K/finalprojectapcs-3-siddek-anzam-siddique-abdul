@@ -1,12 +1,4 @@
-class UnoGame {
-  Deck deck;
-  ArrayList<Player> players;
-  int currentplayer;
-  
-  UnoGame(){
-    deck = new Deck(); 
-  }
-}
+
 
 
 void setup() {
