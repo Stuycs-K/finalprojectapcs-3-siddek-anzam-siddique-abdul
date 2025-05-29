@@ -11,3 +11,5 @@ This document must be updated daily every time you finish a work session.
 ### 2025-05-22 - Completed last section, the intended pacing, of the prototype
 
 ### 2025-05-27 - Coded the Deck class and the Player class
+
+### 2025-05-029 - fixed Card and Player classes, coded three of the special card effects
