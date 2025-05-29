@@ -1,6 +1,6 @@
 class DrawCard extends Card{
-  DrawCard(String colors){
-    super(colors, "+2");
+  public DrawCard(String clr, int value){
+    super(clr, value);
   }
   
   void effect(UnoGame game){
