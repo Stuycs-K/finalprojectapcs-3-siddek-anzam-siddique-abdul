@@ -1,14 +1,24 @@
 class Card{
-String colors; 
-String value;
-
- 
-Card(String colors, String value){
-  this.colors = colors;
-  this.value = value;
-}
- 
-boolean playable(Card topCard){
-  return this.colors.equals(topCard.colors) || this.value.equals(topCard.value);
-}
+  private String clr; 
+  private int value;
+    
+  public Card(String clr, int value){
+    this.clr = clr;
+    this.value = value;
+  }
+  
+  public String getColor() {
+    return clr;
+  }
+  
+  public int getValue() {
+    return value;
+  }
+   
+  boolean playable(Card topCard){
+    String otherColor = topCard.getColor();
+    int otherValue = topCard.getValue();
+    
+    return clr.equals(otherColor) || value == otherValue;
+  }
 }

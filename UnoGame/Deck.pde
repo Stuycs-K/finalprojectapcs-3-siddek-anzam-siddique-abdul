@@ -17,8 +17,8 @@ class Deck{
        cards.add(new Card(clr, 0));
        
        for (int i = 1; i <= 9; i++) {
-         cards.add(new NumberCard(clr, i));
-         cards.add(new NumberCard(clr, i));
+         cards.add(new Card(clr, i));
+         cards.add(new Card(clr, i));
        }
        
        for (int i = 0; i < 2; i++) {
