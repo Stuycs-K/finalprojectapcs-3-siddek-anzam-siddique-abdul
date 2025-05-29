@@ -17,11 +17,11 @@ class Player{
     return deck;
   }
   
-  public drawCard(Card card) {
+  public void drawCard(Card card) {
     deck.add(card);
   }
   
-  public playCard(int index) {
+  public Card playCard(int index) {
     return deck.remove(index);
   }
 }
