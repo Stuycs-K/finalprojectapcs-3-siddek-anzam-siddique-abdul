@@ -1,8 +1,8 @@
 class Card{
   private String clr; 
-  private int value;
+  private String value;
     
-  public Card(String clr, int value){
+  public Card(String clr, String value){
     this.clr = clr;
     this.value = value;
   }
@@ -16,7 +16,7 @@ class Card{
     return clr;
   }
   
-  public int getValue() {
+  public String getValue() {
     return value;
   }
    

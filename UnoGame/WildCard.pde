@@ -1,5 +1,5 @@
 class WildCard extends Card{
   public WildCard() {
-    super("wild");
+    super("Black", "Wild");
   }
 }
