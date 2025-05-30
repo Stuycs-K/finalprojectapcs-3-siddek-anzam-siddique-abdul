@@ -1,18 +1,22 @@
 class Card{
   private String clr; 
-  private String value;
+  private int value;
     
-  public Card(String clr, String value){
+  public Card(String clr, int value){
     this.clr = clr;
     this.value = value;
   }
   
+  public Card(String clr) {
+    this.clr = clr;
+    value = -1;
+  }
   
   public String getColor() {
     return clr;
   }
   
-  public String getValue() {
+  public int getValue() {
     return value;
   }
    

@@ -1,13 +1,8 @@
 class DrawCard extends Card {
   private int drawAmount;
 
-  public DrawCard(String clr, int amount) {
-    if (amount == 2) {
-      super(clr, "DrawTwo");
-    } else {
-      super(clr, "WildDrawFour");
-    }
-    drawAmount = amount;
+  public DrawCard(String clr, int value){
+    super(clr, value);
   }
 
   public void effect(Uno game) {
