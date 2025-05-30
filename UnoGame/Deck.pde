@@ -14,7 +14,7 @@ class Deck{
     String[] colors = {"RED", "BLUE", "GREEN", "YELLOW"};
 
     for (String clr : colors) {
-       cards.add(new Card(clr, 0));
+       cards.add(new Card(clr, "0"));
        
        for (int i = 1; i <= 9; i++) {
          cards.add(new Card(clr, i));
