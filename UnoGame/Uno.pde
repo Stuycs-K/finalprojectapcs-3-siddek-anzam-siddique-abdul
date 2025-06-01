@@ -4,6 +4,7 @@ class Uno {
   int currentplayer;
   int direction;
   Card topCard;
+  boolean waitingForInput = false;
   
   Uno (String username, int numBots){
     deck = new Deck();
@@ -74,6 +75,32 @@ class Uno {
     advanceTurn();
   }  
   
+  public void playHumanCard(int index) {
+    Player player = players.get(currentplayer);
+    ArrayList<Card> hand = player.getDeck();
+    Card selected = hand.get(index);
+
+    if (selected.playable(topCard)) {
+      topCard = player.playCard(index);
+      println("played" + topCard.getColor() + topCard.getValue());
+      topCard.effect();
+      advanceTurn();
+    } else {
+      println("Card not playable. Try another.");
+    }
+
+    waitingForInput = false;
+  }
+  
+  private void advanceTurn() {
+    if (checkWin() != -1) {
+      println(players.get(currentplayer).getName() + "won");
+      noLoop();
+      return;
+    }
+    currentplayer = (currentplayer + direction + players.size()) % players.size();
+  }
+  
   public int checkWin() {
     for (int i = 0; i < players.size(); i++) {
       Player user = players.get(i);
@@ -83,5 +110,17 @@ class Uno {
     }
     
     return -1;
+  }
+  
+  public boolean isWaitingForHumanInput() {
+    return waitingForInput;
+  }
+
+  public Player getCurrentPlayer() {
+    return players.get(currentplayer);
+  }
+
+  public Card getTopCard() {
+    return topCard;
   }
 }
