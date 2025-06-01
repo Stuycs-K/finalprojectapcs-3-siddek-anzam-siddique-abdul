@@ -3,13 +3,13 @@ class Uno {
   ArrayList<Player> players;
   int currentplayer;
   int direction;
+  Card topCard;
   
   Uno (String username, int numBots){
     deck = new Deck();
     players = new ArrayList<Player>();
     currentplayer = 0;
     direction = 1;
-    Card topCard;
   
     players.add(new Player(username));
     
@@ -33,6 +33,46 @@ class Uno {
       }
     }
   }
+  
+  public void playTurn() {
+    Player player = players.get(currentplayer);
+    ArrayList<Card> hand = player.getDeck();
+
+    if (currentplayer == 0) {
+      for (Card card : hand) {
+        if (card.playable(topCard)) {
+          waitingForInput = true;
+          return;
+        }
+      }
+      
+      println("No playable card. Drawing one.");
+      player.drawCard(deck.drawCard());
+      advanceTurn();
+      return;
+    }
+    
+    boolean played = false;
+    
+    for (int i = 0; i < hand.size(); i++) {
+      Card card = hand.get(i);
+      
+      if (card.playable(topCard)) {
+        topCard = player.playCard(i);
+        println(player.getName() + "played" + topCard.getColor() + topCard.getValue());
+        topCard.effect();
+        played = true;
+        break;
+      }
+    }
+    
+    if (!played) {
+      player.drawCard(deck.drawCard());
+      println(player.getName() + "drew");
+    }
+    
+    advanceTurn();
+  }  
   
   public int checkWin() {
     for (int i = 0; i < players.size(); i++) {
