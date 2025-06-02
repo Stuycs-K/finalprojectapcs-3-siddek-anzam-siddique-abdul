@@ -44,5 +44,17 @@ void showTopCard() {
   text("Top Card:", 50, 50);
   drawCard(game.getTopCard(), 150, 30);
 }
+void showPlayerHand() {
+  Player player = game.getCurrentPlayer();
+  ArrayList<Card> hand = player.getDeck();
+
+  textSize(16);
+  fill(0);
+  text("Your Hand:", 50, height - 160);
+
+  for (int i = 0; i < hand.size(); i++) {
+    drawCard(hand.get(i), 100 + i * 70, height - 120);
+  }
+}
 
   
