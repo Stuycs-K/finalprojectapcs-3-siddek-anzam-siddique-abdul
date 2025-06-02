@@ -37,4 +37,12 @@ void mousePressed() {
     }
   }
 }
+
+void showTopCard() {
+  fill(0);
+  textSize(18);
+  text("Top Card:", 50, 50);
+  drawCard(game.getTopCard(), 150, 30);
+}
+
   
