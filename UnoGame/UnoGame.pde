@@ -89,7 +89,7 @@ color getCardColor(String clr) {
   if (clr.equals("RED")) {
     return color(255, 0, 0);
   } else if (clr.equals("BLUE")) {
-    return color(0, 0, 255);
+    return color(0, 145, 255);
   } else if (clr.equals("GREEN")) {
     return color(0, 200, 0);
   } else if (clr.equals("YELLOW")) {
