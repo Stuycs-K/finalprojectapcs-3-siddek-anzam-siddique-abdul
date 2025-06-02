@@ -57,4 +57,24 @@ void showPlayerHand() {
   }
 }
 
+void drawCard(Card card, int x, int y) {
+  int w = 60;
+  int h = 90;
+  fill(getCardColor(card.getColor()));
+  rect(x, y, w, h);
+  fill(0);
+  textSize(12);
+  textAlign(CENTER, CENTER);
+
+  String label;
+
+  if (card.getValue() == -1) {
+    label = card.getClass().getSimpleName();
+  } else {
+    label = card.getColor() + " " + card.getValue();
+  }
+
+  text(label, x + w / 2, y + h / 2);
+}
+
   
