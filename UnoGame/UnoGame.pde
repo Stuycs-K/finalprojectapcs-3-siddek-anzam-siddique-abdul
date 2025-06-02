@@ -7,6 +7,9 @@ void setup() {
 
 void draw() {
   background(255);
+  showTopCard();
+  showPlayerHand();
+  showTurnInfo();
   if (!game.isWaitingForHumanInput()) {
     delay(1000);
     game.playTurn();
@@ -75,6 +78,25 @@ void drawCard(Card card, int x, int y) {
   }
 
   text(label, x + w / 2, y + h / 2);
+}
+void showTurnInfo() {
+  Player player = game.getCurrentPlayer();
+  fill(0);
+  textSize(16);
+  text("Current Turn: " + player.getName(), 550, 30);
+} 
+color getCardColor(String clr) {
+  if (clr.equals("RED")) {
+    return color(255, 0, 0);
+  } else if (clr.equals("BLUE")) {
+    return color(0, 0, 255);
+  } else if (clr.equals("GREEN")) {
+    return color(0, 200, 0);
+  } else if (clr.equals("YELLOW")) {
+    return color(255, 255, 0);
+  } else {
+    return color(150); // wild or unknown
+  }
 }
 
   
