@@ -1,5 +1,6 @@
 Uno game;
-
+boolean noDelay = false;
+int delays = 1000;
 void setup() {
   size(800, 600);
   game = new Uno("You", 3); 
@@ -10,8 +11,9 @@ void draw() {
   showTopCard();
   showPlayerHand();
   showTurnInfo();
+  drawnodelay();
   if (!game.isWaitingForHumanInput()) {
-    delay(1000);
+    delay(delays);
     game.playTurn();
   }
 }
@@ -39,6 +41,19 @@ void mousePressed() {
       clickedCard = true;
     }
   }
+}
+
+void drawnodelay(){
+  if (noDelay){
+    fill(100,255,100);
+    
+}else{
+  fill(200);
+}rect(500,40,100,40,5);
+fill(0);
+textAlign(CENTER,CENTER);
+textSize(14);
+text("No Delay", 550,60);
 }
 
 void showTopCard() {
