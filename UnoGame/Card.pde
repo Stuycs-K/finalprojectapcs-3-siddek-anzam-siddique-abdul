@@ -24,6 +24,14 @@ class Card{
     String otherColor = topCard.getColor();
     int otherValue = topCard.getValue();
     
+    if (clr.equals("wild")) {
+      return true;
+    }
+    
+    if (topCard instanceof DrawCard || this instanceof DrawCard) {
+      return clr.equals(otherColor);
+    }
+    
     return clr.equals(otherColor) || value == otherValue;
   }
   

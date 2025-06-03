@@ -1,6 +1,5 @@
 Uno game;
-boolean noDelay = false;
-int delays = 1000;
+
 void setup() {
   size(800, 600);
   game = new Uno("You", 3); 
@@ -11,9 +10,8 @@ void draw() {
   showTopCard();
   showPlayerHand();
   showTurnInfo();
-  drawnodelay();
   if (!game.isWaitingForHumanInput()) {
-    delay(delays);
+    delay(1000);
     game.playTurn();
   }
 }
@@ -41,19 +39,6 @@ void mousePressed() {
       clickedCard = true;
     }
   }
-}
-
-void drawnodelay(){
-  if (noDelay){
-    fill(100,255,100);
-    
-}else{
-  fill(200);
-}rect(500,40,100,40,5);
-fill(0);
-textAlign(CENTER,CENTER);
-textSize(14);
-text("No Delay", 550,60);
 }
 
 void showTopCard() {
@@ -88,8 +73,13 @@ void drawCard(Card card, int x, int y) {
 
   if (card.getValue() == -1) {
     label = card.getClass().getSimpleName();
-  } else {
+  } 
+  else {
+    if (card.getColor() == "wild") {
+      label = "Draw " + card.getValue();
+    } else {
     label = card.getColor() + " " + card.getValue();
+    }
   }
 
   text(label, x + w / 2, y + h / 2);
@@ -113,5 +103,3 @@ color getCardColor(String clr) {
     return color(150); // wild or unknown
   }
 }
-
-  
