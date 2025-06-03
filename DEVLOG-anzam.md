@@ -17,3 +17,5 @@ This document must be updated daily every time you finish a work session.
 ### 2025-05-31 - Coded most of Uno Class (main game class)
 
 ### 2025-06-01 - Completed Uno Class
+
+### 2025-06-03 - Fixed card labeling and fixed some of wildcard functionality
