@@ -74,6 +74,12 @@ textSize(14);
 text("No Delay", 550,60);
 }
 
+void logmessage(String msg){
+  messageLog.add(msg);
+  if (messageLog.size() > maxmessagees(){
+  }
+  
+
 
 
 void showTopCard() {
