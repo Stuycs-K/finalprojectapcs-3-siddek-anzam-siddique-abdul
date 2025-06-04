@@ -9,3 +9,4 @@
 # 2025-05-31 - Updated Special Card classes
 # 2025-06-02 - Updated UnoGame file to display cards
 # 2025-06-03 - Edited user interface
+# 2025-06-04 - Edited NoDelay Function and MessageLog
