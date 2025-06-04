@@ -1,4 +1,7 @@
 Uno game;
+ArrayList<String> messageLog = new ArrayList<String>();
+int maxmessages = 5;
+
 boolean noDelay = false;
 int delays = 1000; 
 
@@ -28,6 +31,16 @@ void mousePressed() {
   if (!game.isWaitingForHumanInput()) {
     return;
   }
+    if(mouseX > 500  && mouseX < 540  && mouseY > 100 && mouseY < 140){
+      noDelay = !noDelay;
+  }
+  if (noDelay){
+    delays = 10;
+  }else{
+    delays = 1000;
+  }
+  
+
 
   Player player = game.getCurrentPlayer();
   ArrayList<Card> hand = player.getDeck();
