@@ -76,8 +76,10 @@ text("No Delay", 550,60);
 
 void logmessage(String msg){
   messageLog.add(msg);
-  if (messageLog.size() > maxmessagees(){
+  if (messageLog.size() > maxmessages){
+    messageLog.remove(0);
   }
+}
   
 
 
