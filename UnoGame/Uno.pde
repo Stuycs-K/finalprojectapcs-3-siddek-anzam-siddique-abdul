@@ -75,6 +75,10 @@ class Uno {
     advanceTurn();
   }  
   
+  public void setWaitingForHumanInput(boolean value) {
+  waitingForInput = value;
+}
+  
   public void playHumanCard(int index) {
     Player player = players.get(currentplayer);
     ArrayList<Card> hand = player.getDeck();

@@ -16,6 +16,12 @@ void draw() {
   showPlayerHand();
   showTurnInfo();
   drawnodelay();
+  fill(200);
+rect(500, 100, 100, 40, 5);
+fill(0);
+textAlign(CENTER, CENTER);
+textSize(14);
+text("Play Again", 550, 120);
   if (!game.isWaitingForHumanInput()) {
     delay(delays);
     game.playTurn();
@@ -28,17 +34,20 @@ void draw() {
 
 
 void mousePressed() {
-  if (!game.isWaitingForHumanInput()) {
-    return;
+  if (mouseX > 500 && mouseX < 600 && mouseY > 40 && mouseY < 80) {
+    noDelay = !noDelay;
+    if (noDelay) {
+      delays = 10;
+    } else {
+      delays = 1000;
+    }
   }
-    if(mouseX > 500  && mouseX < 540  && mouseY > 100 && mouseY < 140){
-      noDelay = !noDelay;
-  }
-  if (noDelay){
-    delays = 10;
-  }else{
-    delays = 1000;
-  }
+ if (mouseX > 500 && mouseX < 600 && mouseY > 100 && mouseY < 140) {
+  game = new Uno("You", 3);
+  game.setWaitingForHumanInput(false);
+  loop();   
+}
+   if (!game.isWaitingForHumanInput()) return;
   
 
 
