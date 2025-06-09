@@ -6,7 +6,7 @@ boolean noDelay = false;
 int delays = 2000; 
 
 void setup() {
-  size(800, 600);
+  size(1000, 800);
   game = new Uno("You", 3); 
 }
 
@@ -194,6 +194,32 @@ void loadReverseCard() {
   game.setWaitingForHumanInput(true);
 }
 
+void loadPlus2Card() {
+  messageLog.clear();
+  game = new Uno("You", 3);
+  UnoGame.logmessage("Loaded Draw 2 Card scenario.");
+  
+  game.topCard = new Card("RED", 5);
+  
+  Player you = game.players.get(0);
+  you.drawCard(new DrawCard("RED +", 2));
+  
+  game.setWaitingForHumanInput(true);
+}
+
+void loadPlus4Card() {
+  messageLog.clear();
+  game = new Uno("You", 3);
+  UnoGame.logmessage("Loaded Draw 4 Card scenario.");
+  
+  game.topCard = new Card("RED", 5);
+  
+  Player you = game.players.get(0);
+  you.drawCard(new DrawCard("RED +", 4));
+  
+  game.setWaitingForHumanInput(true);
+}
+
 void keyPressed() {
   if (key == 's' || key == 'S') {
     loadSkipCard();
@@ -201,5 +227,13 @@ void keyPressed() {
   
   if (key == 'r' || key == 'R') {
     loadReverseCard();
+  }
+  
+  if (key == '2') {
+    loadPlus2Card();
+  }
+  
+  if (key == '4') {
+    loadPlus4Card();
   }
 }

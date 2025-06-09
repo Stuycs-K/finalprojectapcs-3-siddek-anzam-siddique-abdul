@@ -3,21 +3,17 @@ class DrawCard extends Card {
 
   public DrawCard(String clr, int value){
     super(clr, value);
+    drawAmount = value;
   }
 
   public void effect(Uno game) {
-    int next = game.currentplayer + game.direction;
-    if (next < 0) {
-      next += game.players.size();
-    }
-    next = next % game.players.size();
-
+    int next = (game.currentplayer + game.direction + game.players.size()) % game.players.size();
     Player user = game.players.get(next);
 
     for (int i = 0; i < drawAmount; i++) {
       user.drawCard(game.deck.drawCard());
     }
 
-    game.currentplayer = next; 
+    UnoGame.logmessage(user.getName() + " drew " + drawAmount + " cards.");
   }
 }
