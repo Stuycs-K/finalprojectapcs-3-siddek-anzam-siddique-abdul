@@ -1,6 +1,6 @@
 Uno game;
-ArrayList<String> messageLog = new ArrayList<String>();
-int maxmessages = 5;
+static ArrayList<String> messageLog = new ArrayList<String>();
+static int maxmessages = 5;
 
 boolean noDelay = false;
 int delays = 1000; 
@@ -26,10 +26,21 @@ text("Play Again", 550, 120);
     delay(delays);
     game.playTurn();
   }
+  drawMessageLog();
 }
 
 
-  
+void drawMessageLog() {
+  fill(0);
+  textSize(14);
+  textAlign(LEFT, TOP);
+  int x = 50;
+  int y = 200;
+
+  for (int i = 0; i < messageLog.size(); i++) {
+    text(messageLog.get(i), x, y + i * 20);
+  }
+}
 
 
 
@@ -83,7 +94,7 @@ textSize(14);
 text("No Delay", 550,60);
 }
 
-void logmessage(String msg){
+static void logmessage(String msg){
   messageLog.add(msg);
   if (messageLog.size() > maxmessages){
     messageLog.remove(0);

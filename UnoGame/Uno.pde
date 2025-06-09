@@ -47,7 +47,7 @@ class Uno {
         }
       }
       
-      println("No playable card. Drawing one.");
+      UnoGame.logmessage("No playable card. Drawing one.");
       player.drawCard(deck.drawCard());
       advanceTurn();
       return;
@@ -60,7 +60,7 @@ class Uno {
       
       if (card.playable(topCard)) {
         topCard = player.playCard(i);
-        println(player.getName() + "played" + topCard.getColor() + topCard.getValue());
+        UnoGame.logmessage(player.getName() + " played " + topCard.getColor() + topCard.getValue());
         topCard.effect();
         played = true;
         break;
@@ -69,7 +69,7 @@ class Uno {
     
     if (!played) {
       player.drawCard(deck.drawCard());
-      println(player.getName() + "drew");
+      UnoGame.logmessage(player.getName() + " drew");
     }
     
     advanceTurn();
@@ -86,11 +86,11 @@ class Uno {
 
     if (selected.playable(topCard)) {
       topCard = player.playCard(index);
-      println("played" + topCard.getColor() + topCard.getValue());
+      UnoGame.logmessage(player.getName() + " played " + topCard.getColor() + topCard.getValue());
       topCard.effect();
       advanceTurn();
     } else {
-      println("Card not playable. Try another.");
+      UnoGame.logmessage("Card not playable. Try another.");
     }
 
     waitingForInput = false;
@@ -98,7 +98,7 @@ class Uno {
   
   private void advanceTurn() {
     if (checkWin() != -1) {
-      println(players.get(currentplayer).getName() + "won");
+      UnoGame.logmessage(players.get(currentplayer).getName() + " won");
       noLoop();
       return;
     }
