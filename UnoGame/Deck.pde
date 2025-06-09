@@ -22,9 +22,9 @@ class Deck{
        }
        
        for (int i = 0; i < 2; i++) {
-         cards.add(new SkipCard(clr));
-         cards.add(new ReverseCard(clr));
-         cards.add(new DrawCard(clr, 2));
+         cards.add(new SkipCard(clr + " Skip"));
+         cards.add(new ReverseCard(clr + " Reverse"));
+         cards.add(new DrawCard(clr + " +", 2));
        }
        
        for (int i = 0; i < 4; i++) {

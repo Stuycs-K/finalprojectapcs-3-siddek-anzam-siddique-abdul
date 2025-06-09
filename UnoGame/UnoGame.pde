@@ -3,7 +3,7 @@ static ArrayList<String> messageLog = new ArrayList<String>();
 static int maxmessages = 5;
 
 boolean noDelay = false;
-int delays = 1000; 
+int delays = 2000; 
 
 void setup() {
   size(800, 600);
@@ -21,7 +21,7 @@ rect(500, 100, 100, 40, 5);
 fill(0);
 textAlign(CENTER, CENTER);
 textSize(14);
-text("Play Again", 550, 120);
+text("Restart", 550, 120);
   if (!game.isWaitingForHumanInput()) {
     delay(delays);
     game.playTurn();
@@ -54,6 +54,7 @@ void mousePressed() {
     }
   }
  if (mouseX > 500 && mouseX < 600 && mouseY > 100 && mouseY < 140) {
+  messageLog.clear();
   game = new Uno("You", 3);
   game.setWaitingForHumanInput(false);
   loop();   
@@ -154,15 +155,51 @@ void showTurnInfo() {
   text("Current Turn: " + player.getName(), 550, 30);
 } 
 color getCardColor(String clr) {
-  if (clr.equals("RED")) {
+  if (clr.contains("RED")) {
     return color(255, 0, 0);
-  } else if (clr.equals("BLUE")) {
+  } else if (clr.contains("BLUE")) {
     return color(0, 145, 255);
-  } else if (clr.equals("GREEN")) {
+  } else if (clr.contains("GREEN")) {
     return color(0, 200, 0);
-  } else if (clr.equals("YELLOW")) {
+  } else if (clr.contains("YELLOW")) {
     return color(255, 255, 0);
   } else {
     return color(150); // wild or unknown
+  }
+}
+
+void loadSkipCard() {
+  messageLog.clear();
+  game = new Uno("You", 3);
+  UnoGame.logmessage("Loaded skip card scenario.");
+  
+  game.topCard = new Card("RED", 5);
+  
+  Player you = game.players.get(0);
+  you.drawCard(new SkipCard("RED Skip"));
+  
+  game.setWaitingForHumanInput(true);
+}
+
+void loadReverseCard() {
+  messageLog.clear();
+  game = new Uno("You", 3);
+  UnoGame.logmessage("Loaded reverse card scenario.");
+  
+  game.topCard = new Card("RED", 5);
+  
+  Player you = game.players.get(0);
+  you.drawCard(new ReverseCard("RED Reverse"));
+  
+  game.setWaitingForHumanInput(true);
+}
+
+void keyPressed() {
+  if (key == 's' || key == 'S') {
+    loadSkipCard();
+  }
+  
+  if (key == 'r' || key == 'R') {
+    loadReverseCard();
   }
 }

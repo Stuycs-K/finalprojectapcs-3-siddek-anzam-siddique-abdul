@@ -5,6 +5,7 @@ class Uno {
   int direction;
   Card topCard;
   boolean waitingForInput = false;
+  public boolean skipNext = false;
   
   Uno (String username, int numBots){
     deck = new Deck();
@@ -60,8 +61,14 @@ class Uno {
       
       if (card.playable(topCard)) {
         topCard = player.playCard(i);
-        UnoGame.logmessage(player.getName() + " played " + topCard.getColor() + topCard.getValue());
-        topCard.effect();
+
+        if (topCard instanceof SkipCard || topCard instanceof ReverseCard) {
+          UnoGame.logmessage(player.getName() + " played " + topCard.getColor());
+        } else {
+          UnoGame.logmessage(player.getName() + " played " + topCard.getColor() + " " + topCard.getValue());
+        }
+        
+        topCard.effect(this);
         played = true;
         break;
       }
@@ -76,8 +83,8 @@ class Uno {
   }  
   
   public void setWaitingForHumanInput(boolean value) {
-  waitingForInput = value;
-}
+    waitingForInput = value;
+  }
   
   public void playHumanCard(int index) {
     Player player = players.get(currentplayer);
@@ -86,8 +93,14 @@ class Uno {
 
     if (selected.playable(topCard)) {
       topCard = player.playCard(index);
-      UnoGame.logmessage(player.getName() + " played " + topCard.getColor() + topCard.getValue());
-      topCard.effect();
+
+      if (topCard instanceof SkipCard || topCard instanceof ReverseCard) {
+        UnoGame.logmessage(player.getName() + " played " + topCard.getColor());
+      } else {
+        UnoGame.logmessage(player.getName() + " played " + topCard.getColor() + " " + topCard.getValue());
+      }
+ 
+      topCard.effect(this);
       advanceTurn();
     } else {
       UnoGame.logmessage("Card not playable. Try another.");
@@ -102,7 +115,14 @@ class Uno {
       noLoop();
       return;
     }
-    currentplayer = (currentplayer + direction + players.size()) % players.size();
+    
+    if (skipNext) {
+      UnoGame.logmessage("Skipped " + players.get((currentplayer + direction + players.size()) % players.size()).getName());
+      currentplayer = (currentplayer + 2 * direction + players.size()) % players.size();
+      skipNext = false;
+    } else {
+      currentplayer = (currentplayer + direction + players.size()) % players.size();
+    }
   }
   
   public int checkWin() {

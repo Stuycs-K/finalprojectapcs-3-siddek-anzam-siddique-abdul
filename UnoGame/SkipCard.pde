@@ -4,7 +4,6 @@ class SkipCard extends Card{
   }
   
   public void effect(Uno game) {
-    int next = (game.currentplayer + game.direction) % game.players.size();
-    game.currentplayer = next;
+    game.skipNext = true;
   }
 }

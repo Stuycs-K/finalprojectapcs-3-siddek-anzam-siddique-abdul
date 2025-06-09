@@ -21,21 +21,22 @@ class Card{
   }
    
   boolean playable(Card topCard){
-    String otherColor = topCard.getColor();
+    String otherColor = clr.split(" ")[0];
+    String topBaseColor = topCard.getColor().split(" ")[0];
     int otherValue = topCard.getValue();
     
-    if (clr.equals("wild")) {
+    if (otherColor.equals("wild")) {
       return true;
     }
     
     if (topCard instanceof DrawCard || this instanceof DrawCard) {
-      return clr.equals(otherColor);
+      return otherColor.equals(topBaseColor);
     }
     
-    return clr.equals(otherColor) || value == otherValue;
+    return otherColor.equals(topBaseColor) || value == otherValue;
   }
   
-  public void effect() {
+  public void effect(Uno game) {
     
   }
 }
