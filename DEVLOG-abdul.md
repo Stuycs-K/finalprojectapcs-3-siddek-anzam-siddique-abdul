@@ -10,3 +10,4 @@
 # 2025-06-02 - Updated UnoGame file to display cards
 # 2025-06-03 - Edited user interface
 # 2025-06-04 - Edited NoDelay Function and MessageLog
+# 2025-06-08 - Added Play Again Button and Fixed NoDelay Button
