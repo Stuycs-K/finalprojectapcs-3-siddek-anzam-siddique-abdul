@@ -6,4 +6,6 @@ Our goal is to recreate the card game “UNO!” where a user can play against t
 # Intended usage:
 The UNO game will be run from the user's IDE/Terminal. When the game launches, the user plays against three bots. Each player starts with seven cards, and one random card is placed in the center as the starting card. The screen displays the current top card, the player’s hand, and whose turn it is. The player can click on a card in their hand to play it if it's valid, or draw a new card if there are no playable options. The game also includes two control buttons: a “No Delay” toggle that speeds up the game by reducing the time between bot moves, and a “Play Again” button that restarts the game. Bot turns are handled automatically and are updated on screen. You win by using up all of your cards in your deck.
 
+Shortcuts: S (Skip Card), R (Reverse Card), W (Win), 2 (+2 Card), 4 (+4 Card)
+
   
