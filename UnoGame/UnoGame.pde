@@ -220,6 +220,17 @@ void loadPlus4Card() {
   game.setWaitingForHumanInput(true);
 }
 
+void loadWin() {
+  messageLog.clear();
+  game = new Uno("You", 3);
+  UnoGame.logmessage("Loaded win scenario.");
+  
+  game.topCard = new Card("RED", 5);
+  
+  Player you = game.players.get(0);
+  you.getDeck().clear();
+}
+
 void keyPressed() {
   if (key == 's' || key == 'S') {
     loadSkipCard();
@@ -227,6 +238,10 @@ void keyPressed() {
   
   if (key == 'r' || key == 'R') {
     loadReverseCard();
+  }
+  
+  if (key == 'w' || key == 'W') {
+    loadWin();
   }
   
   if (key == '2') {
