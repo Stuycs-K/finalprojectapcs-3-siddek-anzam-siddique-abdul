@@ -36,78 +36,102 @@ class Uno {
     }
   }
   
-  public void playTurn() {
-    Player player = players.get(currentplayer);
-    ArrayList<Card> hand = player.getDeck();
+public void playTurn() {
+  Player player = players.get(currentplayer);
+  ArrayList<Card> hand = player.getDeck();
 
-    if (currentplayer == 0) {
-      for (Card card : hand) {
-        if (card.playable(topCard)) {
-          waitingForInput = true;
-          return;
-        }
+  if (currentplayer == 0) {
+    for (Card card : hand) {
+      if (card.playable(topCard)) {
+        waitingForInput = true;
+        return;
       }
-      
-      UnoGame.logmessage("No playable card. Drawing one.");
-      player.drawCard(deck.drawCard());
-      advanceTurn();
+    }
+
+    UnoGame.logmessage("No playable card. Drawing one.");
+    player.drawCard(deck.drawCard());
+
+    if (hand.size() == 1) {
+      UnoGame.logmessage(player.getName() + " won");
+      noLoop();
       return;
     }
-    
-    boolean played = false;
-    
-    for (int i = 0; i < hand.size(); i++) {
-      Card card = hand.get(i);
-      
-      if (card.playable(topCard)) {
-        topCard = player.playCard(i);
 
-        if (topCard instanceof SkipCard || topCard instanceof ReverseCard) {
-          UnoGame.logmessage(player.getName() + " played " + topCard.getColor());
-        } else {
-          UnoGame.logmessage(player.getName() + " played " + topCard.getColor() + " " + topCard.getValue());
-        }
-        
-        topCard.effect(this);
-        played = true;
-        break;
-      }
-    }
-    
-    if (!played) {
-      player.drawCard(deck.drawCard());
-      UnoGame.logmessage(player.getName() + " drew");
-    }
-    
     advanceTurn();
-  }  
+    return;
+  }
+
+  boolean played = false;
+
+  for (int i = 0; i < hand.size(); i++) {
+    Card card = hand.get(i);
+    if (card.playable(topCard)) {
+      topCard = player.playCard(i);
+      UnoGame.logmessage(player.getName() + " played " + topCard.getColor() + " " + topCard.getValue());
+      topCard.effect(this);
+
+      if (player.getDeck().size() == 1) {
+        UnoGame.logmessage(player.getName() + " won");
+        noLoop();
+        return;
+      }
+
+      played = true;
+      break;
+    }
+  }
+
+  if (!played) {
+    player.drawCard(deck.drawCard());
+    UnoGame.logmessage(player.getName() + " drew");
+
+    if (player.getDeck().size() == 1) {
+      UnoGame.logmessage(player.getName() + " won");
+      noLoop();
+      return;
+    }
+  }
+
+  advanceTurn();
+}
+
+
+
   
   public void setWaitingForHumanInput(boolean value) {
     waitingForInput = value;
   }
   
-  public void playHumanCard(int index) {
-    Player player = players.get(currentplayer);
-    ArrayList<Card> hand = player.getDeck();
-    Card selected = hand.get(index);
+public void playHumanCard(int index) {
+  Player player = players.get(currentplayer);
+  ArrayList<Card> hand = player.getDeck();
 
-    if (selected.playable(topCard)) {
-      topCard = player.playCard(index);
-
-      if (topCard instanceof SkipCard || topCard instanceof ReverseCard) {
-        UnoGame.logmessage(player.getName() + " played " + topCard.getColor());
-      } else {
-        UnoGame.logmessage(player.getName() + " played " + topCard.getColor() + " " + topCard.getValue());
-      }
- 
-      topCard.effect(this);
-      advanceTurn();
-    } else {
-      UnoGame.logmessage("Card not playable. Try another.");
-    }
-
-    waitingForInput = false;
+  if (hand.isEmpty() || index < 0 || index >= hand.size()) {
+    UnoGame.logmessage("Invalid card selection.");
+    return;
   }
+
+  Card selected = hand.get(index);
+
+  if (selected.playable(topCard)) {
+    topCard = player.playCard(index);
+    UnoGame.logmessage(player.getName() + " played " + topCard.getColor() + " " + topCard.getValue());
+    topCard.effect(this);
+    waitingForInput = false;
+
+    
+    advanceTurn();
+  } else {
+    UnoGame.logmessage("Card not playable. Try another.");
+    waitingForInput = true;
+  }
+}
+
+
+
+
+
+
   
   private void advanceTurn() {
     if (checkWin() != -1) {

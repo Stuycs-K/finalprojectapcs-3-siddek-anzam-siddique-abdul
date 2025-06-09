@@ -11,23 +11,37 @@ void setup() {
 }
 
 void draw() {
+  if (game.checkWin() != -1) {
+    background(255);
+    fill(0);
+    textSize(32);
+    textAlign(CENTER, CENTER);
+    text(game.getCurrentPlayer().getName() + " won!", width / 2, height / 2);
+    noLoop();
+    return;
+  }
+
   background(255);
   showTopCard();
   showPlayerHand();
   showTurnInfo();
   drawnodelay();
+
   fill(200);
-rect(500, 100, 100, 40, 5);
-fill(0);
-textAlign(CENTER, CENTER);
-textSize(14);
-text("Restart", 550, 120);
+  rect(500, 100, 100, 40, 5);
+  fill(0);
+  textAlign(CENTER, CENTER);
+  textSize(14);
+  text("Restart", 550, 120);
+
   if (!game.isWaitingForHumanInput()) {
     delay(delays);
     game.playTurn();
   }
+
   drawMessageLog();
 }
+
 
 
 void drawMessageLog() {
@@ -47,25 +61,20 @@ void drawMessageLog() {
 void mousePressed() {
   if (mouseX > 500 && mouseX < 600 && mouseY > 40 && mouseY < 80) {
     noDelay = !noDelay;
-    if (noDelay) {
-      delays = 10;
-    } else {
-      delays = 1000;
-    }
+    delays = noDelay ? 10 : 1000;
   }
- if (mouseX > 500 && mouseX < 600 && mouseY > 100 && mouseY < 140) {
-  messageLog.clear();
-  game = new Uno("You", 3);
-  game.setWaitingForHumanInput(false);
-  loop();   
-}
-   if (!game.isWaitingForHumanInput()) return;
-  
 
+  if (mouseX > 500 && mouseX < 600 && mouseY > 100 && mouseY < 140) {
+    messageLog.clear();
+    game = new Uno("You", 3);
+    game.setWaitingForHumanInput(false);
+    loop();   
+  }
+
+  if (!game.isWaitingForHumanInput()) return;
 
   Player player = game.getCurrentPlayer();
   ArrayList<Card> hand = player.getDeck();
-  boolean clickedCard = false;
 
   for (int i = 0; i < hand.size(); i++) {
     int x = 100 + i * 70;
@@ -73,12 +82,14 @@ void mousePressed() {
     int w = 60;
     int h = 90;
 
-    if (!clickedCard && mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + h) {
-      game.playHumanCard(i);
-      clickedCard = true;
+    if (mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + h) {
+      if (i >= 0 && i < hand.size()) {
+        game.playHumanCard(i);
+      }
     }
   }
 }
+
 
 void drawnodelay(){
 
